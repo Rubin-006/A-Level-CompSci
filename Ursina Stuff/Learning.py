@@ -1,9 +1,9 @@
 from ursina import *
 
-app = Ursina(size=(1600,1200))
+
+app = Ursina(size=(1000,800))
 
 cube = Entity(model="cube",color = color.orange,scale=(2,2,2),texture="brick")
-
 
 
 def update():

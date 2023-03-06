@@ -1,1 +1,1 @@
-print("Sophia wake up")
+print("Wake up")

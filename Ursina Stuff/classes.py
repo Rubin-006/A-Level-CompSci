@@ -1,6 +1,8 @@
+from math import sqrt
+
 class Vector:
     
-    def __init__(self,x,y,z):
+    def __init__(self,x=0,y=0,z=0):
         self.x = x
         self.y = y
         self.z = z
@@ -11,14 +13,38 @@ class Vector:
     def __sub__(self,vec):
         return Vector(self.x-vec.x,self.y-vec.y,self.z-vec.z)
 
+    def __mul__(self,num):
+        if isinstance(num,(float,int)):
+            return Vector(num*self.x,num*self.y,num*self.z)
+        
+        if isinstance(num, Vector):
+            return self.x*num.x+self.y*num.y+self.z*num.z
+        
+    def __truediv__(self,num):
+        return Vector(self.x/num,self.y/num,self.z/num)
+
+    def get_mag(self):
+        return sqrt(self.x**2+self.y**2+self.z**2)
+    
+    def normalise(self):
+        mag = self.get_mag()
+        return Vector(self.x/mag,self.y/mag,self.z/mag)
 
     def __str__(self):
-        return f"{self.x}i+{self.y}j+{self.z}k"
-    
+        if (self.y < 0) and (self.z < 0):
+            return f"{self.x}i{self.y}j{self.z}k"
+        elif self.y < 0:
+            return f"{self.x}i{self.y}j+{self.z}k"
+        elif self.z < 0:
+            return f"{self.x}i+{self.y}j{self.z}k"
+        else:
+            return f"{self.x}i+{self.y}j+{self.z}k" 
+        
 
-v = Vector(1,1,1)
-u = Vector(5,7,3)
+grav = lambda m,n,r: (m*n)/r**2
 
-print(v)
-print(v-v)
-print(v-u)
+class StellarBody:
+
+    def __init__(self,r=0,m=0):
+        self.r = r
+        self.m = m

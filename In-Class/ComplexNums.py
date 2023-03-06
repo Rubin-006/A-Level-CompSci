@@ -24,7 +24,7 @@ class Complex(object):
 
 
     def __str__(self):
-        return f"{self.real}+{self.imaginary}i" if self.imaginary >=0 else f"{self.real}{self.imaginary}i"
+        return f"{self.real}+{self.imaginary}i" if self.imaginary >=0 else f"{self.real}-{self.imaginary}i"
 
 
 

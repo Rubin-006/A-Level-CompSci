@@ -1,4 +1,4 @@
-from math import sqrt
+from numpy import *
 
 class Vector:
     
@@ -39,13 +39,28 @@ class Vector:
             return f"{self.x}i+{self.y}j{self.z}k"
         else:
             return f"{self.x}i+{self.y}j+{self.z}k" 
-        
 
-grav = lambda m,n,r: (m*n)/r**2
+class Body:
+    
+    AU = 1.496*(10**11)
 
-class StellarBody:
+    def __init__(self,T=1,radius=0,mass=0,x=0,y=0,z=0):
+        self.pos = Vector(x,y,z)
+        self.radius = radius
+        self.mss = mass
+        self.period = T
+        self.angularDisplacment = 2*pi/self.period 
+    
+    def acceleration(self,mass_of_star):
+        pass
 
-    def __init__(self,body,r=0,m=0):
-        self.body = body
-        self.r = r
-        self.m = m
+    def force_of_attraction(self,mass_of_star):
+        G = 6.67*(10**-11)
+        return (G*self.mass*mass_of_star)/self.pos.get_mag()
+    
+class PlanetarySystem:
+
+    def __init__(self,star,planets=[]):
+        self.star = star
+        self.planets = planets
+        pass

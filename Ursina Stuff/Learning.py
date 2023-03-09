@@ -1,18 +1,6 @@
 from classes import *
 from ursina import *
 
-class SolarSystem:
-
-    def __init__(self,star,planet):
-        m1 = 2*(10**30)
-        self.star = StellarBody(body=star,r=696340,m=m1)
-        self.planet = StellarBody(body=planet,r=6371,m=6*(10**24))
-
-
-    def velcity_calc(self):
-        self
-
-
 
 
 
@@ -21,20 +9,15 @@ class SolarSystem:
 if __name__ == "__main__":
     app = Ursina(size=(1000,800))
 
-    sun = Entity(model="sphere",scale=(109,109,109),texture="sun.jpg")
-    earth = Entity(model="sphere",position = (0,0,(-500)),scale=(20,20,20),texture="earth.jpg")
-    earth.look_at(sun)
-    
-    SS = SolarSystem(
-        sun,
-        earth
-        )
+    sun = Entity(model="sphere",texture="sun.jpg")
+    earth = Entity(model="sphere",position = (10,0,0),texture="earth.jpg")
 
     def update():
-        velocity = Vec3(100,200,-270)
-        earth.x += velocity.x
-        earth.y += velocity.y
-        earth.z += velocity.z
+        velocity = Vec3(-earth.x,-earth.y,-earth.z)
+        earth.x += (velocity.x)*0.01
+        earth.y += (velocity.y)*0.01+time.dt *10
+        earth.z += (velocity.z)*0.01+time.dt *10
+        earth.look_at(sun)
         if held_keys["d"]: sun.x += time.dt * 5
         if held_keys["a"]: sun.x -= time.dt * 5
         if held_keys["w"]: sun.y += time.dt * 5

@@ -12,10 +12,7 @@ InstructionSet = {
     "MOV":"1001",
     "HALT":"1010"
 }
-
-
 registers = {f"R{i}":0 for i in range(15)}
-
 memory = {i:0 for i in range(15)}
 
 with open(r"In-Class\assemblyCode.txt") as asm:

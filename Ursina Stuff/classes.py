@@ -45,6 +45,7 @@ grav = lambda m,n,r: (m*n)/r**2
 
 class StellarBody:
 
-    def __init__(self,r=0,m=0):
+    def __init__(self,body,r=0,m=0):
+        self.body = body
         self.r = r
         self.m = m

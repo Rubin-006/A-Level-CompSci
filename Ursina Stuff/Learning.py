@@ -13,10 +13,10 @@ if __name__ == "__main__":
     earth = Entity(model="sphere",position = (10,0,0),texture="earth.jpg")
 
     def update():
-        velocity = Vec3(-earth.x,-earth.y,-earth.z)
-        earth.x += (velocity.x)*0.01
-        earth.y += (velocity.y)*0.01+time.dt *10
-        earth.z += (velocity.z)*0.01+time.dt *10
+        velocity = Vec3(30,0,0)
+        earth.x += (velocity.x)*0.001
+        velocity.x += 27*0.001
+        velocity.y += 27*0.001
         earth.look_at(sun)
         if held_keys["d"]: sun.x += time.dt * 5
         if held_keys["a"]: sun.x -= time.dt * 5

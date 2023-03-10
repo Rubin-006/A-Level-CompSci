@@ -23,7 +23,21 @@ blt = lambda a,b: a<b
 beq = lambda a,b: a==b
 bne = lambda a,b: a!=b
 
+def create_branch(branch_name,data):
+    haris = False
+    with open(data) as file:
+        lines = file.readlines()
+        lines_of_branch = []
+        for line in lines:
+            if haris and (line[0] == " "):
+                lines_of_branch.append(line)
+            else:
+                haris = False
+            if line == branch_name:
+                haris = True
+    print(lines_of_branch)
 
+create_branch("b1:\n",r"In-Class\assemblyCode.txt")
 
 
 with open(r"In-Class\assemblyCode.txt") as asm:

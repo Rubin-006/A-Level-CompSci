@@ -6,8 +6,8 @@ ADD R4 R1 R2
 CMP R4 R3
 BGT b2
 b1:
-ADD R5 R0 R2
-HALT
+    ADD R5 R0 R2
+    HALT
 b2:
-MOV R6 5
-HALT
+    MOV R6 5
+    HALT

@@ -1,1 +1,1 @@
-print("Wake up")
+print(None)

@@ -23,7 +23,8 @@ if __name__ == "__main__":
         earth.x = -cos(pd*t + angle) * radius
         earth.y = sin(pi/2-(pd*t + angle))* radius
         earth.z = sin(pi-(pd*t + angle)) * radius
-        #sun.rotation_y += 20*time.dt
+        sun.rotation_y += 20*time.dt
+        earth.rotation_y += 20*time.dt
 
     window.borderless = False
     window.exit_button.visible = False

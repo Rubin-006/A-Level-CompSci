@@ -121,13 +121,16 @@ class App(ctk.CTk):
                 gradient1 = np.tan(angle1)
                 gradient2 = -np.tan(angle2)
 
+                
                 x1 = np.arange(0,c,0.01)
                 y1 = [0 for i in range(len(x1))]
+                
                 x2 = np.arange(0,a,0.01)
                 y2 = gradient1*x2
+                
                 if b != c:
-                    x3 = np.arange(b,c,0.01)
-                    y3 = gradient2*x3
+                    x3 = np.arange(x2[-1],c,0.01)
+                    y3 = gradient2*(x3-x2[-1]) + (gradient1*x2[-1])
                 else:
                     y3 = np.arange(0,gradient2,0.01)
                     x3 = [b for i in range(len(y3))]

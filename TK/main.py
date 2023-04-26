@@ -114,36 +114,19 @@ class App(ctk.CTk):
             c = sides[2]
             self.txt.delete(1.0, ctk.END)
             if a + b > c:
-                self.txt.insert(1.0,"Triangle is possible")
-                
-                angle1 = np.arccos(((a**2)+(c**2)-(b**2))/(2*a*c))
-                angle2 = np.arccos(((b**2)+(c**2)-(a**2))/(2*b*c))
-                gradient1 = np.tan(angle1)
-
-                
-                x1 = np.arange(0,c,0.01)
-                y1 = [0 for i in range(len(x1))]
-                
-                x2 = np.arange(0,a,0.01)
-                y2 = gradient1*x2
-                
-                x_a = x2[-1]
-                y_a = gradient1*x_a
-                x_b = 10
-                y_b = 0
-                gradient2 = (y_a-y_b)/(x_a-x_b)
-                y_int = -1*gradient2*x_b
-                
-                if b != c:
-                    x3 = np.arange(x2[-1],c,0.01)
-                    y3 = gradient2*x3 + y_int
+                self.txt.insert(2.0,"Triangle is possible\n")
+                if a == b:
+                    if a == c:
+                        self.txt.insert(2.0, "Triangle is equilateral")
+                    else:
+                        self.txt.insert(2.0, "Triangle is Issosceles")
                 else:
-                    y3 = np.arange(0,gradient2,0.01)
-                    x3 = [b for i in range(len(y3))]
-                
-                plt.plot(x1,y1)
-                plt.plot(x2,y2)
-                plt.plot(x3,y3)
+                    self.txt.insert(2.0, "Traingle is scalene")
+ 
+                x = [0,a,((a**2)+(c**2)-(b**2))/(2*a),0]
+                y = [0,0,np.sqrt((c**2)-(((a**2)+(c**2)-(b**2))/(2*a))**2),0]
+
+                plt.plot(x,y)
                 plt.show()
             else:
                 self.txt.insert(1.0,"Triangle is not possible")

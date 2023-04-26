@@ -2,6 +2,7 @@ import tkinter as tk
 import customtkinter as ctk
 import numpy as np
 import matplotlib.pyplot as plt
+from PIL import Image
 
 ctk.set_appearance_mode("Dark")
 
@@ -98,13 +99,26 @@ class App(ctk.CTk):
         self.txt = ctk.CTkTextbox(
             master=self.sides,
             width=200,
-            height=50
+            height=100
         )
 
         self.txt.pack(
             padx=25,
             pady=25
         )
+
+        self.images = Frame(
+                    master = self,
+                    height = 500,
+                    width = 500,
+                    border_width=3,
+                    fg_color = "#85F"
+                )
+
+        self.images.grid(
+            row=0,
+            column=2       
+                )
         
     def traingle_inequality(self,side1,side2,side3):
         try:
@@ -114,20 +128,42 @@ class App(ctk.CTk):
             c = sides[2]
             self.txt.delete(1.0, ctk.END)
             if a + b > c:
-                self.txt.insert(2.0,"Triangle is possible\n")
-                if a == b:
-                    if a == c:
-                        self.txt.insert(2.0, "Triangle is equilateral")
-                    else:
-                        self.txt.insert(2.0, "Triangle is Issosceles")
+                self.txt.insert(1.0,"Triangle is Possible\n")
+                if (a == b) and (a == c):
+                    self.txt.insert(2.0,"Triangle is Equilateral\nTriangle is Isosceles\n")
+                elif ((a == b) and (a != c)) or ((a == c) and (a != b)) or ((b == c) and (b != a)):
+                    self.txt.insert(2.0,"Triangle is Isosceles\n")
                 else:
-                    self.txt.insert(2.0, "Traingle is scalene")
+                    self.txt.insert(3.0, "Triangle is Scalene\n")
+
+                if a**2 + b**2 == c**2: self.txt.insert(2.0, "Triangle is Right-Angled\n")
  
                 x = [0,a,((a**2)+(c**2)-(b**2))/(2*a),0]
                 y = [0,0,np.sqrt((c**2)-(((a**2)+(c**2)-(b**2))/(2*a))**2),0]
 
                 plt.plot(x,y)
+                plt.grid(False)
+                plt.axis("off")
+                plt.savefig(r"TK\triangle.png")
+
+                self.img = ctk.CTkImage(
+                    light_image= Image.open(r"TK\triangle.png"),
+                    size=(500,500)
+                )
+                self.triangle = ctk.CTkButton(
+                    master = self.images,
+                    image=self.img,
+                    width = 500,
+                    height = 500,
+                    anchor=ctk.CENTER,
+                    fg_color="transparent",
+                    hover_color="transparent"
+                )
+                self.triangle["state"] = "DISABLED"
+
+                self.triangle.pack()
                 plt.show()
+
             else:
                 self.txt.insert(1.0,"Triangle is not possible")
 

@@ -20,6 +20,7 @@ class App(ctk.CTk):
         super().__init__(*args,**kwargs)
         self.geometry("800x600")
         self.title("Shape Thing")
+        self.resizable(width=False,height=False)
         self.grid_rowconfigure(5, weight=1)
         self.grid_columnconfigure(5, weight=1)
 
@@ -89,6 +90,7 @@ class App(ctk.CTk):
             border_width=3,
             fg_color="#85F",
             border_color="black",
+            hover_color="#80D",
             command= lambda: self.traingle_inequality(self.side1,self.side2,self.side3)
         )
         self.button.pack(
@@ -141,6 +143,7 @@ class App(ctk.CTk):
                 x = [0,a,((a**2)+(c**2)-(b**2))/(2*a),0]
                 y = [0,0,np.sqrt((c**2)-(((a**2)+(c**2)-(b**2))/(2*a))**2),0]
 
+                plt.clf()
                 plt.plot(x,y)
                 plt.grid(False)
                 plt.axis("off")
@@ -156,13 +159,15 @@ class App(ctk.CTk):
                     width = 500,
                     height = 500,
                     anchor=ctk.CENTER,
-                    fg_color="transparent",
-                    hover_color="transparent"
+                    fg_color="#FFF",
+                    hover_color="#FFF"
                 )
-                self.triangle["state"] = "DISABLED"
 
-                self.triangle.pack()
-                plt.show()
+                self.triangle.place(
+                    relx=0.5,
+                    rely=0.5,
+                    anchor=ctk.CENTER
+                )
 
             else:
                 self.txt.insert(1.0,"Triangle is not possible")

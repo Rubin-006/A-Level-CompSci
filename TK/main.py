@@ -119,7 +119,6 @@ class App(ctk.CTk):
                 angle1 = np.arccos(((a**2)+(c**2)-(b**2))/(2*a*c))
                 angle2 = np.arccos(((b**2)+(c**2)-(a**2))/(2*b*c))
                 gradient1 = np.tan(angle1)
-                gradient2 = -np.tan(angle2)
 
                 
                 x1 = np.arange(0,c,0.01)
@@ -128,9 +127,16 @@ class App(ctk.CTk):
                 x2 = np.arange(0,a,0.01)
                 y2 = gradient1*x2
                 
+                x_a = x2[-1]
+                y_a = gradient1*x_a
+                x_b = 10
+                y_b = 0
+                gradient2 = (y_a-y_b)/(x_a-x_b)
+                y_int = -1*gradient2*x_b
+                
                 if b != c:
                     x3 = np.arange(x2[-1],c,0.01)
-                    y3 = gradient2*(x3-x2[-1]) + (gradient1*x2[-1])
+                    y3 = gradient2*x3 + y_int
                 else:
                     y3 = np.arange(0,gradient2,0.01)
                     x3 = [b for i in range(len(y3))]

@@ -108,7 +108,7 @@ class App(ctk.CTk):
         
     def traingle_inequality(self,side1,side2,side3):
         try:
-            sides= sorted([int(side1.get()),int(side2.get()),int(side3.get())])
+            sides= sorted([float(side1.get()),float(side2.get()),float(side3.get())])
             a = sides[0]
             b = sides[1]
             c = sides[2]

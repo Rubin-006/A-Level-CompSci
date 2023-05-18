@@ -173,7 +173,8 @@ class App(ctk.CTk):
                 self.txt.insert(1.0,"Triangle is not possible")
 
         except ValueError:
-            print("Please enter 3 valid sides")
+            self.txt.delete(1.0, ctk.END)
+            self.txt.insert(1.0,"Please enter 3 valid sides\n")
     
 
 

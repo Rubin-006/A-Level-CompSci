@@ -169,26 +169,28 @@ class App(ctk.CTk):
 
     def calc(self,aprc,money,terms,term_type):
         self.txt.delete(1.0, ctk.END)
-        aprc = float(aprc.get())/12
-        money = float(money.get())
-        terms = int(terms.get())
-        term_type= term_type.get()
+        try: 
+            aprc = float(aprc.get())/12
+            money = float(money.get())
+            terms = int(terms.get())
+            term_type= term_type.get()
 
-        self.types = {"Monthly":12,"Weekly":52,"Daily":365}
-        
-        terms = terms * self.types[term_type]
-        payment = money*((aprc*((1+aprc)**terms))/(((1+aprc)**terms)-1))
+            self.types = {"Monthly":12,"Weekly":52,"Daily":365}
+            
+            terms = terms * self.types[term_type]
+            payment = money*((aprc*((1+aprc)**terms))/(((1+aprc)**terms)-1))
 
-        match term_type:
-            case "Monthly":
-                self.type = "Month"
-            case "Weekly":
-                self.type = "Week"
-            case "Daily":
-                self.type = "Day"
+            match term_type:
+                case "Monthly":
+                    self.type = "Month"
+                case "Weekly":
+                    self.type = "Week"
+                case "Daily":
+                    self.type = "Day"
 
-        self.txt.insert(1.0,f"You have to pay £{round(payment,2)} every {self.type}")
-
+            self.txt.insert(1.0,f"You have to pay £{round(payment,2)} every {self.type}")
+        except ValueError or ZeroDivisionError:
+            self.txt.insert(1.0, "Enter Appropriate Values for the data")
 if __name__ == "__main__":
     root = App()
     root.mainloop()

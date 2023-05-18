@@ -150,7 +150,7 @@ class App(ctk.CTk):
                 plt.savefig(r"TK\triangle.png")
 
                 self.img = ctk.CTkImage(
-                    light_image= Image.open(r"TK\triangle.png"),
+                    light_image= Image.open(r"TK\Triangle\triangle.png"),
                     size=(500,500)
                 )
                 self.triangle = ctk.CTkButton(

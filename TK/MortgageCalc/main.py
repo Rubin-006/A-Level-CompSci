@@ -34,7 +34,7 @@ class TxtBox(ctk.CTkTextbox):
 class App(ctk.CTk):
     def __init__(self,*args,**kwargs):
         super().__init__(*args,**kwargs)
-        self.geometry("800x600")
+        self.geometry("800x400")
         self.title("Mortgage Calculator")
         self.resizable(width=False,height=False)
 

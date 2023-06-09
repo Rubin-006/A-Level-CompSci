@@ -61,12 +61,6 @@ if __name__ == "__main__":
 )
 
 
-
-
-
-
-
-
     graph.adj_calc()
     print(graph)
 

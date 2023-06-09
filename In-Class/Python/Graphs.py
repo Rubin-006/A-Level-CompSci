@@ -1,4 +1,5 @@
 import sys
+from queue import Queue
 
 M = sys.maxsize
 
@@ -32,6 +33,14 @@ class Graph:
         relevant_edges = {i:j for i in self.nodes for j in self.edges if j["source"] == i}
         print(relevant_edges)
 
+    def bfs(self, target):
+        n = len(self.nodes)
+        nodes = self.nodes
+        search = Queue(n)
+        for i in range(n):
+            print(search.get())
+
+
 if __name__ == "__main__":
     graph = Graph(
         ["A", "B", "C", "D", "E"],
@@ -64,4 +73,4 @@ if __name__ == "__main__":
     graph.adj_calc()
     print(graph)
 
-    graph.dfs("A")
+    graph.bfs("A")
